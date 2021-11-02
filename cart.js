@@ -35,4 +35,20 @@ undoOne.addEventListener('click', function() {
 });
 closeOne.addEventListener('click', function() {
     alertOne.style.display = 'none';
+});
+incrementBookOne.addEventListener('click', function() {
+    let itemPrice = 204;
+    qntBookOne.value = Number(qntBookOne.value) + 1;
+    priceBookOne.innerText = itemPrice + Number(qntBookOne.value);
 })
+
+decrementBookOne.addEventListener('click', function() {
+    if (Number(qntBookOne.value) > 1) {
+        let itemPrice = 204;
+        qntBookOne.value = Number(qntBookOne.value) - 1;
+        priceBookOne.innerText = itemPrice + Number(qntBookOne.value);
+
+    } else {
+        alert('You need to atleast have 1 copy in your cart!');
+    }
+});
