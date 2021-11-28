@@ -8,6 +8,7 @@ const incrementBookOne = document.querySelector('#increment1');
 const decrementBookOne = document.querySelector('#decrement1');
 const rmvBookOne = document.querySelector('#rvm-btn1');
 const priceBookOne = document.querySelector('#price1');
+const cartTotal = document.querySelector('#cart-total');
 
 //secone book
 
@@ -21,11 +22,6 @@ const decrementBookTwo = document.querySelector('#decrement2');
 const rmvBookTwo = document.querySelector('#rvm-btn2');
 const priceBookTwo = document.querySelector('#price2');
 
-//rest of the elements
-const cartTotal = document.querySelector('#cart-total');
-const subTotal = document.querySelector('#subTotal');
-const total = document.querySelector('#total');
-const payable = document.querySelector('#payable');
 
 //functionality for book one
 rmvBookOne.addEventListener('click', function() {
@@ -47,6 +43,10 @@ incrementBookOne.addEventListener('click', function() {
     qntBookOne.value = Number(qntBookOne.value) + 1;
 
     priceBookOne.innerText = itemPrice * Number(qntBookOne.value);
+    cartTotal.innerText = Number(priceBookTwo.innerText) + Number(priceBookOne.innerText);
+    subTotal.innerText = Number(cartTotal.innerText) + "TK.";
+    total.innerText = (Number(cartTotal.innerText) + 50) + "TK.";
+    payable.innerText = (Number(cartTotal.innerText) + 50) + "TK.";
 })
 
 decrementBookOne.addEventListener('click', function() {
@@ -55,7 +55,10 @@ decrementBookOne.addEventListener('click', function() {
         qntBookOne.value = Number(qntBookOne.value) - 1;
         console.log(qntBookOne.value), "thisssss";
         priceBookOne.innerText = itemPrice - 204;
-
+        cartTotal.innerText = Number(cartTotal.innerText) - 204;
+        subTotal.innerText = Number(cartTotal.innerText) + "TK.";
+        total.innerText = (Number(cartTotal.innerText) + 50) + "TK.";
+        payable.innerText = (Number(cartTotal.innerText) + 50) + "TK.";
     } else {
         alert('You need to atleast have 1 copy in your cart!');
     }
@@ -80,6 +83,11 @@ incrementBookTwo.addEventListener('click', function() {
     let itemPrice = 128;
     qntBookTwo.value = Number(qntBookTwo.value) + 1;
     priceBookTwo.innerText = itemPrice * Number(qntBookTwo.value);
+    cartTotal.innerText = Number(priceBookTwo.innerText) + Number(priceBookOne.innerText);
+    subTotal.innerText = Number(cartTotal.innerText) + "TK.";
+    total.innerText = (Number(cartTotal.innerText) + 50) + "TK.";
+    payable.innerText = (Number(cartTotal.innerText) + 50) + "TK.";
+
 })
 
 decrementBookTwo.addEventListener('click', function() {
@@ -87,8 +95,29 @@ decrementBookTwo.addEventListener('click', function() {
         let itemPrice = priceBookTwo.innerText;
         qntBookTwo.value = Number(qntBookTwo.value) - 1;
         priceBookTwo.innerText = itemPrice - 128;
+        cartTotal.innerText = Number(cartTotal.innerText) - 128;
+        subTotal.innerText = Number(cartTotal.innerText) + "TK.";
+        total.innerText = (Number(cartTotal.innerText) + 50) + "TK.";
+        payable.innerText = (Number(cartTotal.innerText) + 50) + "TK.";
 
     } else {
         alert('You need to atleast have 1 copy in your cart!');
     }
 });
+
+//displayFunctionalities
+
+const subTotal = document.querySelector('#subtotal');
+const shippingCost = document.querySelector('#shipping');
+const total = document.querySelector('#total');
+const payable = document.querySelector('#payable');
+const shippingBtn = document.querySelector('#shippingButton');
+
+shippingBtn.addEventListener('click', function() {
+    const subTotalValue = Number(priceBookOne.innerText) + Number(priceBookTwo.innerText);
+    subTotal.innerText = subTotalValue + "TK";
+    const laa = subTotalValue + shippingCost;
+    console.log(laa, "laaaaaa");
+
+
+})
